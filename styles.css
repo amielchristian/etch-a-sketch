@@ -1,0 +1,12 @@
+body   {
+    background-color: #eeeeee;    
+}
+
+.grid   {
+    width: 480px;
+    height: 480px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: flex-start; /* this doesn't really matter */
+}
