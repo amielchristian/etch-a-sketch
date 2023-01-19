@@ -1,5 +1,6 @@
 let slider = document.querySelector(".slider");
 let sliderValue = document.querySelector(".slider-value");
+let colorPicker = document.querySelector(".color-picker");
 let grid = document.querySelector(".grid");
 let squareAmount = slider.value * slider.value;
 
@@ -18,6 +19,9 @@ function createNewGrid()   {
         let element = document.createElement("div");
         element.className = "grid-cell";
         element.style = "background-color: white; height: "+squareSize+"px; width: "+squareSize+"px;";
+        element.onmouseenter = function()    {
+            element.style = "background-color: "+colorPicker.value+"; height: "+squareSize+"px; width: "+squareSize+"px;";
+        }
         grid.appendChild(element);
     }
 }
