@@ -1,27 +1,35 @@
 <!DOCTPYPE html>
 <html>
     <head>
-        <meta charset="utf-8">
         <title>Etch-a-Sketch</title>
+        <meta charset="utf-8">
         <link rel="stylesheet" href="styles.css">
+        <link href="https://fonts.cdnfonts.com/css/sf-pro-display" rel="stylesheet">
     </head>
-    <body>
-        <div class="input">
-            <input checked="true" type="radio" name="brushes" id="brushes" value="regular">
-            <label>Regular</label>
-            <input type="radio" name="brushes" id="brushes" value="rainbow">
-            <label>Rainbow</label>
-            <input type="radio" name="brushes" id="brushes" value="shader">
-            <label>Shader</label>
+    <body>\
+        <div class="main">
+            <div class="input-panel">
+                <input class="color-picker" type="color">
+                <div class="radio-container">
+                    <div>
+                        <input checked="true" type="radio" name="brushes" id="brushes" value="regular">
+                        <label for="brushes">Regular</label>
+                    </div>
+                    <div>
+                        <input type="radio" name="brushes" id="brushes" value="rainbow">
+                        <label for="brushes">Rainbow</label>
+                    </div>
+                </div>
+                <br>
+                <div class="slider-container">
+                    <input class="slider" type="range" value="16" min="8" max="64" step="4">
+                    <p class="slider-value"></p>
+                </div>
+            </div>
 
-            <input class="color-picker" type="color">
-            <input class="slider" type="range" value="16" min="8" max="64" step="4">
-            <p class="slider-value"></p>
+            <div class="grid">
+            </div>
         </div>
-
-        <div class="grid">
-        </div>
-        
         <script type="text/javascript" src="script.js"></script>
     </body>
 </html>

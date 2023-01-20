@@ -1,5 +1,13 @@
 body   {
-    background-color: #eeeeee;    
+    font-family: "SF Pro Display", sans-serif;
+    margin: 10vw 10vw 0vw 10vw;
+    background-color: #eeeeee;
+    text-align: center;
+}
+
+.main   {
+    display: flex;
+    justify-content: center;
 }
 
 .grid   {
@@ -8,5 +16,27 @@ body   {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    align-content: flex-start; /* this doesn't really matter */
+}
+
+.input-panel    {
+    padding: 5vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.color-picker  {
+    margin: 10px;
+}
+
+.radio-container  {
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.slider-container   {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }

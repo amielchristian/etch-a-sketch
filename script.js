@@ -1,12 +1,11 @@
 // Brushes
 let brushes = document.querySelectorAll("#brushes");
-for (let i = 0; i < 3; i++) {
+for (let i = 0; i < 2; i++) {
     let brush = brushes.item(i);
     brush.oninput=changeBrush;
 }
 let regularBrushSelected = true;
 let rainbowBrushSelected = false;
-let shaderSelected = false;
 // Color picker
 let colorPicker = document.querySelector(".color-picker");
 // Slider
@@ -52,9 +51,6 @@ function createNewGrid()   {
             else if (rainbowBrushSelected)   {
                 element.style = "background-color: "+generateRandomColor()+"; height: "+squareSize+"px; width: "+squareSize+"px;";
             }
-            else if (shaderSelected)   {
-                element.style = "background-color: "+addShade(element)+"; height: "+squareSize+"px; width: "+squareSize+"px;";
-            }
         });
     }
 }
@@ -69,17 +65,10 @@ function changeBrush()  {
     if (this.value === "regular")   {
         regularBrushSelected = true;
         rainbowBrushSelected = false;
-        shaderSelected = false;
     }
     if (this.value === "rainbow")   {
         regularBrushSelected = false;
         rainbowBrushSelected = true;
-        shaderSelected = false;
-    }
-    if (this.value === "shader")   {
-        regularBrushSelected = false;
-        rainbowBrushSelected = false;
-        shaderSelected = true;
     }
 }
 
@@ -91,10 +80,4 @@ function generateRandomColor()  {
         color = color + hexadecimal.charAt(Math.floor(Math.random()*16)+1);
     }
     return color;
-}
-
-function addShade(x) {
-    let baseColor = x.style.backgroundColor;
-    console.log(baseColor.red);
-
 }
