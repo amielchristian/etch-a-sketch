@@ -5,4 +5,4 @@ This project is not yet complete. Future changes will implement missing features
 # To-do list
 - add an eraser
 - add a Clear button for clearing the grid
-- make the website look more visually appealing
+- make the website look more visually interesting
