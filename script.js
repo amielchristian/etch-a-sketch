@@ -1,11 +1,12 @@
 // Brushes
 let brushes = document.querySelectorAll("#brushes");
-for (let i = 0; i < 2; i++) {
+for (let i = 0; i < brushes.length; i++) {
     let brush = brushes.item(i);
     brush.oninput=changeBrush;
 }
 let regularBrushSelected = true;
 let rainbowBrushSelected = false;
+let eraserSelected = false;
 // Color picker
 let colorPicker = document.querySelector(".color-picker");
 // Slider
@@ -21,6 +22,10 @@ createNewGrid();
 // updates the grid when the slider is adjusted
 slider.oninput=adjustSlider;
 
+let mouseIsDown = false;
+document.body.onmousedown = function()  { mouseIsDown = true };
+document.body.onmouseup = function()  { mouseIsDown = false };
+
 function createNewGrid()   {
     console.log(squareAmount);
     grid.innerHTML = '';
@@ -29,29 +34,9 @@ function createNewGrid()   {
         let element = document.createElement("div");
         element.className = "grid-cell";
         element.style = "background-color: white; height: "+squareSize+"px; width: "+squareSize+"px;";
+        element.addEventListener("mouseover", colorCell);
+        element.addEventListener("mousedown", colorCell);
         grid.appendChild(element);
-
-        // coloring features
-            /*
-            let mouseIsDown = false;
-            element.addEventListener("mousedown", function(){mouseIsDown = true;});
-            element.addEventListener("mouseup", function(){mouseIsDown = false;});
-
-            element.addEventListener("mousemove", function()    {
-                if (mouseIsDown)    {
-                    element.style = "background-color: "+colorPicker.value+"; height: "+squareSize+"px; width: "+squareSize+"px;";
-                }
-            });
-            */
-
-        element.addEventListener("mousemove", function()    {
-            if (regularBrushSelected)    {
-                element.style = "background-color: "+colorPicker.value+"; height: "+squareSize+"px; width: "+squareSize+"px;";
-            }
-            else if (rainbowBrushSelected)   {
-                element.style = "background-color: "+generateRandomColor()+"; height: "+squareSize+"px; width: "+squareSize+"px;";
-            }
-        });
     }
 }
 
@@ -80,4 +65,16 @@ function generateRandomColor()  {
         color = color + hexadecimal.charAt(Math.floor(Math.random()*16)+1);
     }
     return color;
+}
+
+function colorCell(mouseEvent)    {
+    let squareSize = mouseEvent.target.style.width;
+
+    if (mouseEvent.type === 'mouseover' && !mouseIsDown) return;
+    if (regularBrushSelected)    {
+        mouseEvent.target.style = "background-color: "+colorPicker.value+"; height: "+squareSize+"; width: "+squareSize+";";
+    }
+    if (rainbowBrushSelected)   {
+        mouseEvent.target.style = "background-color: "+generateRandomColor()+"; height: "+squareSize+"; width: "+squareSize+";";
+    }
 }

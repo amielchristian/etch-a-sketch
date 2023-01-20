@@ -1,4 +1,5 @@
 {
+  "type": "module",
   "dependencies": {
     "color": "^4.2.3"
   }

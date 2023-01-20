@@ -16,6 +16,7 @@ body   {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    box-shadow: inset;
 }
 
 .input-panel    {
