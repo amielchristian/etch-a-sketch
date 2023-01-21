@@ -50,10 +50,17 @@ function changeBrush()  {
     if (this.value === "regular")   {
         regularBrushSelected = true;
         rainbowBrushSelected = false;
+        eraserSelected = false;
     }
     if (this.value === "rainbow")   {
         regularBrushSelected = false;
         rainbowBrushSelected = true;
+        eraserSelected = false;
+    }
+    if (this.value === "eraser")    {
+        regularBrushSelected = false;
+        rainbowBrushSelected = false;
+        eraserSelected = true;
     }
 }
 
@@ -76,5 +83,8 @@ function colorCell(mouseEvent)    {
     }
     if (rainbowBrushSelected)   {
         mouseEvent.target.style = "background-color: "+generateRandomColor()+"; height: "+squareSize+"; width: "+squareSize+";";
+    }
+    if (eraserSelected) {
+        mouseEvent.target.style = "background-color: white; height: "+squareSize+"; width: "+squareSize+";";
     }
 }
