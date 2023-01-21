@@ -7,6 +7,10 @@ for (let i = 0; i < brushes.length; i++) {
 let regularBrushSelected = true;
 let rainbowBrushSelected = false;
 let eraserSelected = false;
+// Clear button
+let clear = document.querySelector(".clear");
+clear.addEventListener("click", createNewGrid);
+
 // Color picker
 let colorPicker = document.querySelector(".color-picker");
 // Slider
@@ -27,7 +31,6 @@ document.body.onmousedown = function()  { mouseIsDown = true };
 document.body.onmouseup = function()  { mouseIsDown = false };
 
 function createNewGrid()   {
-    console.log(squareAmount);
     grid.innerHTML = '';
     let squareSize = 480/slider.value;
     for (let i = 0; i < squareAmount; i++)  {
