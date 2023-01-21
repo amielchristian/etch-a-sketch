@@ -62,7 +62,7 @@ function generateRandomColor()  {
     let color = "#";
 
     for (let i = 0; i < 6; i++) {
-        color = color + hexadecimal.charAt(Math.floor(Math.random()*16)+1);
+        color = color + hexadecimal.charAt(Math.floor(Math.random()*15)+1);
     }
     return color;
 }
