@@ -16,6 +16,7 @@ function App() {
   const [sliderValue, setSliderValue] = useState(16);
   let adjustSlider = (event) =>  {
     setSliderValue(event.target.value);
+    clear();
   };
   const [mouseIsDown, setMouseIsDown] = useState(false);
   document.body.onmousedown = () =>  {
@@ -25,8 +26,14 @@ function App() {
     setMouseIsDown(false);
   }
 
+  // for clearing grid
   function clear()  {
-    //TODO
+    console.log('kys')
+    let cells = document.querySelectorAll('.grid-cell');
+    console.log(cells)
+    for (let i = 0; i < cells.length; i++)  {
+      cells[i].style = "background-color: white; height: "+(480/sliderValue)+"px; width: "+(480/sliderValue)+"px;";
+    }
   }
 
   return (
@@ -34,7 +41,7 @@ function App() {
         <div className="input-panel">
             <input className="color-picker" type="color" defaultValue={color} onChange={changeColor}/>
             <RadioContainer handleChange={changeSelected}/>
-            <input className="clear" type="button" value="Clear"/>
+            <input className="clear" type="button" value="Clear" onClick={clear}/>
             <br/>
             <Slider value={sliderValue} handleChange={adjustSlider}/>
         </div>
@@ -63,7 +70,6 @@ class RadioContainer extends React.Component  {
 }
 
 class Slider extends React.Component {
-
   render()  {
     return <div className="slider-container">
       <input className="slider" type="range" defaultValue={this.props.value} onChange={this.props.handleChange} min="8" max="64" step="4"/>
@@ -96,16 +102,15 @@ class Cell extends React.Component  {
   }
 
   colorCell = (mouseEvent) => {
-    let squareSize = mouseEvent.target.style.width;
     if (mouseEvent.type === 'mouseover' && !this.props.mouseIsDown) return;
     if (this.props.selectedBrush === 'regular')    {
-        mouseEvent.target.style = "background-color: "+this.props.color+"; height: "+squareSize+"; width: "+squareSize+";";
+        mouseEvent.target.style = "background-color: "+this.props.color+"; height: "+this.props.size+"px; width: "+this.props.size+"px;";
     }
     if (this.props.selectedBrush === 'rainbow')   {
-        mouseEvent.target.style = "background-color: "+this.generateRandomColor()+"; height: "+squareSize+"; width: "+squareSize+";";
+        mouseEvent.target.style = "background-color: "+this.generateRandomColor()+"; height: "+this.props.size+"px; width: "+this.props.size+"px;";
     }
     if (this.props.selectedBrush === 'eraser') {
-        mouseEvent.target.style = "background-color: white; height: "+squareSize+"; width: "+squareSize+";";
+        mouseEvent.target.style = "background-color: white; height: "+this.props.size+"px; width: "+this.props.size+"px;";
     }
   }
 
