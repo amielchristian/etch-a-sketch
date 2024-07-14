@@ -73,7 +73,10 @@ class Slider extends React.Component {
   render()  {
     return <div className="slider-container">
       <input className="slider" type="range" defaultValue={this.props.value} onChange={this.props.handleChange} min="8" max="64" step="4"/>
+      <div>
       <p className="slider-value">{this.props.value}x{this.props.value}</p>
+      <p className="note">(changing grid size will clear your current work!)</p>
+      </div>
     </div>;
   }
 }
