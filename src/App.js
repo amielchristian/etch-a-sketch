@@ -32,6 +32,37 @@ function App() {
       cells[i].style = "background-color: white; height: "+(480/sliderValue)+"px; width: "+(480/sliderValue)+"px;";
     }
   }
+  // for saving file
+  function save() {
+    let canvas = document.createElement('canvas');
+    canvas.width = "480";
+    canvas.height = "480";
+    canvas.hidden = "true";
+    canvas.id = 'canvas';
+    document.body.appendChild(canvas);
+    let ctx = document.getElementById('canvas').getContext("2d");
+
+    let ps = 480/sliderValue;
+    let cells = document.querySelectorAll('.grid-cell');
+
+    for (let a = 0; a < 3; a++) { // this needs to run three times to remove jank on higher resolutions :<<
+      for (let i = 0; i < Math.sqrt(cells.length); i++)  {
+        for (let j = 0; j < Math.sqrt(cells.length); j++) {
+          ctx.fillStyle = window.getComputedStyle(cells[(i*Math.sqrt(cells.length))+j], null).getPropertyValue("background-color");
+          ctx.fillRect(j*ps, i*ps, ps, ps);
+        }
+      }
+    }
+
+    var a = document.createElement('a');
+    a.href = canvas.toDataURL('image/png');
+    a.download = 'etch.png';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+
+    document.body.removeChild(canvas);
+  }
 
   return (
     <div className="main">
@@ -42,7 +73,10 @@ function App() {
             <br/>
             <Slider value={sliderValue} handleChange={adjustSlider}/>
         </div>
-        <Grid squares={sliderValue*sliderValue} size={480/sliderValue} selectedBrush={selectedBrush} color={color} mouseIsDown={mouseIsDown}/>
+        <div>
+          <Grid squares={sliderValue*sliderValue} size={480/sliderValue} selectedBrush={selectedBrush} color={color} mouseIsDown={mouseIsDown}/>
+          <input type="button" value="Save" onClick={save}></input>
+        </div>
     </div>
   );
 }
