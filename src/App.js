@@ -11,7 +11,6 @@ function App() {
   const [selectedBrush, setSelectedBrush] = useState('regular');
   let changeSelected = (event) =>  {
     setSelectedBrush(event.target.value);
-    console.log(selectedBrush);
   }
   const [sliderValue, setSliderValue] = useState(16);
   let adjustSlider = (event) =>  {
@@ -28,9 +27,7 @@ function App() {
 
   // for clearing grid
   function clear()  {
-    console.log('kys')
     let cells = document.querySelectorAll('.grid-cell');
-    console.log(cells)
     for (let i = 0; i < cells.length; i++)  {
       cells[i].style = "background-color: white; height: "+(480/sliderValue)+"px; width: "+(480/sliderValue)+"px;";
     }
